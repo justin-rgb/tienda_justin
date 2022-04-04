@@ -12,9 +12,9 @@
         <header th:replace="layout/plantilla :: header" />
         
         <div class="contenido">
-            <h2>Datos de la categoria</h2>
+            <h2 tx:text="#{categoria.datos}">Datos de la categoria</h2>
             <br/>
-            <a th:href="@{/categoria/listado}"> Regresar </a>
+            <a th:href="@{/categoria/listado}" tx:text="#{accion.regresar}"> Regresar </a>
             <br />
             <br />
             <form th:action="@{/categoria/guardar}"
@@ -23,15 +23,15 @@
             >
                 <input type="hidden" name="idCategoria" th:field="*{idCategoria}" />
                 
-                <label for="descripcion"> Descripcion </label>
+                <label tx:text="#{categoria.descripcion}" for="descripcion"> Descripcion </label>
                 <input type="text" name="descripcion" th:field="*{descripcion}"/>
                 <br />
 
-                <label for="activo"> Activo </label>
+                <label tx:text="#{categoria.activo}" for="activo"> Activo </label>
                 <input type="checkbox" name="activo" th:field="*{activo}"/>
                 <br />
                 
-                <input type="submit" name="guardar" value="Guardar" />
+                <input type="submit" name="guardar" value="Guardar" tx:text="#{accion.guardar}" />
 
             </form>
         </div>

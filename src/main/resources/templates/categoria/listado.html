@@ -10,14 +10,16 @@
         <header th:replace="layout/plantilla :: header" />
         
         <div class="contenido"> 
-            <h2> Listado de Categorias </h2>
-            <a th:href="@{/categoria/nueva}"> Nueva Categoria</a>
+            <h2 tx:text="#{categoria.titulo}"> Listado de Categorias </h2>
+            <a th:href="@{/categoria/nueva}" tx:text="#{categoria.nuevo}"> Nueva Categoria</a>
             <div th:if="${categorias != null and !categorias.empty }" >
                 <table border="1">
                     <thead>
                         <tr>
-                            <th> Descripcion</th>
-                            <th> Activa </th>
+                            <th tx:text="#{categoria.descripcion}"> Descripcion</th>
+                            <th tx:text="#{categoria.activo}"> Activa </th>
+                            <th tx:text="#{accion.actualizar}"> Actualizar </th>
+                            <th tx:text="#{accion.eliminar}"> Eliminar </th>
                         </tr>
                     </thead>
                     
@@ -25,8 +27,10 @@
                         <tr th:each="categoria : ${categorias}">
                             <td th:text="${categoria.descripcion}"></td>
                             <td> <input type="checkbox" name="activo" th:checked="${categoria.activo}" disabled="true" />  </td>
-                            <td> <a th:href="@{/categoria/modificar/}+${categoria.idCategoria}"> Modificar </a> </td>
-                            <td> <a th:href="@{/categoria/eliminar/}+${categoria.idCategoria}"> Eliminar </a> </td>
+                            <td> <a th:href="@{/categoria/modificar/}+${categoria.idCategoria}"
+                                    tx:text="#{accion.actualizar}"> Modificar </a> </td>
+                            <td> <a th:href="@{/categoria/eliminar/}+${categoria.idCategoria}"
+                                    tx:text="#{accion.eliminar}"> Eliminar </a> </td>
                         </tr>
                     </tbody>
                 </table>

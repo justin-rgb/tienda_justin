@@ -12,8 +12,8 @@
         <header th:replace="layout/plantilla :: header" />
         
         <div class="contenido">
-            <h2>Datos del cliente</h2>
-            <a th:href="@{/cliente/listado}"> Regresar </a>
+            <h2 tx:text="#{cliente.datos}">Datos del cliente</h2>
+            <a th:href="@{/cliente/listado}" tx:text="#{accion.regresar}"> Regresar </a>
             <br/>
 
             <form th:action="@{/cliente/guardar}"
@@ -21,27 +21,27 @@
                   th:object="${cliente}"
             >
                 <input type="hidden" name="idcliente" th:field="*{idCliente}" />
-                <label for="nombre"> Nombre </label>
+                <label for="nombre" tx:text="#{cliente.nombre}"> Nombre </label>
                 <input type="text" name="nombre" th:field="*{nombre}"/>
                 <br />
 
-                <label for="apellidos"> Apellidos </label>
+                <label for="apellidos" tx:text="#{cliente.apellidos}"> Apellidos </label>
                 <input type="text" name="apellidos" th:field="*{apellidos}"/>
                 <br />
 
-                <label for="correo"> Correo </label>
+                <label for="correo" tx:text="#{cliente.correo}"> Correo </label>
                 <input type="email" name="correo" th:field="*{correo}"/>
                 <br />
 
-                <label for="telefono"> Telefono </label>
+                <label for="telefono" tx:text="#{cliente.telefono}"> Telefono </label>
                 <input type="tel" name="telefono" th:field="*{telefono}"/>
                 <br />
                 
-                <label for="limite"> Limite de Credito: </label>
+                <label for="limite" tx:text="#{cliente.limite}"> Limite de Credito: </label>
                 <input type="number" name="limite" th:field="*{credito.limite}"/>
                 <br /><br />
                 
-                <input type="submit" name="guardar" value="Guardar" />
+                <input type="submit" name="guardar" value="Guardar" tx:text="#{accion.guardar}" />
 
             </form>
         </div>

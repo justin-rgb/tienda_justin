@@ -11,15 +11,18 @@
                     <a th:href="@{/}" class="logo nav-link"> TechShop</a>
                     <ul class="nav-menu">
                         <li class="nav-menu-item"> 
-                            <a class="nav-menu-link nav-link" th:href="@{/cliente/listado}"> Cliente </a>
+                            <a class="nav-menu-link nav-link" th:href="@{/cliente/listado}"
+                               th:text="#{plantilla.clientes}"> Cliente </a>
                         </li>
                         
                         <li class="nav-menu-item"> 
-                            <a class="nav-menu-link nav-link" th:href="@{/categoria/listado}"> Categorias </a>
+                            <a class="nav-menu-link nav-link" th:href="@{/categoria/listado}"
+                              th:text="#{plantilla.categorias}" > Categorias </a>
                         </li><!-- comment -->
                         
                         <li class="nav-menu-item"> 
-                            <a class="nav-menu-link nav-link" th:href="@{/articulo/listado}"> Articulos </a>
+                            <a class="nav-menu-link nav-link" th:href="@{/articulo/listado}"
+                               th:text="#{plantilla.articulos}" > Articulos </a>
                         </li>
                         
                     </ul>
@@ -27,7 +30,10 @@
             </header>
         
         <footer th:fragment="footer" class="footer">  
-            <p> &COPY;Derechos Reservados 2022 </p>
+            <p>&COPY [[#{plantilla.derechos}]] 
+                <a t:href="@{/(lang=es)}">ES</a>
+                <a t:href="@{/(lang=en)}">EN</a>
+            </p>
         </footer>
     </body>
 </html>

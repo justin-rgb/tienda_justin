@@ -9,16 +9,18 @@
         <header th:replace="layout/plantilla :: header" />
         
         <div class="contenido"> 
-            <h2> Listado de Articulos </h2>
-            <a th:href="@{/articulo/nuevo}"> Nuevo Articulo</a>
+            <h2 th:text="#{articulo.titulo}"> Listado de Articulos </h2>
+            <a th:href="@{/articulo/nuevo}" th:text="#{articulo.nuevo}" > Nuevo Articulo</a>
             <div th:if="${articulos != null and !articulos.empty }" >
                 <table border="1">
                     <thead>
                         <tr>
-                            <th> Descripcion</th>
-                            <th> Precio </th>
-                            <th> Existencias </th>
-                            <th> Activa </th>
+                            <th tx:text="#{articulo.descripcion}"> Descripcion</th>
+                            <th tx:text="#{articulo.precio}"> Precio </th>
+                            <th tx:text="#{articulo.existencias}"> Existencias </th>
+                            <th tx:text="#{articulo.activo}"> Activa </th>
+                            <th tx:text="#{accion.eliminar}"> ELI </th>
+                            <th tx:text="#{accion.actualizar}"> Acta </th>
                         </tr>
                     </thead>
                     
@@ -29,15 +31,18 @@
                             <td th:text="${articulo.existencias}" style="text-align: center" ></td>
                             
                             <td> <input type="checkbox" name="activo" th:checked="${articulo.activo}" disabled="true">  </td>
-                            <td> <a th:href="@{/articulo/modificar/}+${articulo.idArticulo}"> Modificar </a> </td>
-                            <td> <a th:href="@{/articulo/eliminar/}+${articulo.idArticulo}"> Eliminar </a> </td>
+                            <td> <a th:href="@{/articulo/modificar/}+${articulo.idArticulo}"
+                                    tx:text="#{accion.actualizar}"> Modificar </a> </td>
+                                    
+                            <td> <a th:href="@{/articulo/eliminar/}+${articulo.idArticulo}"
+                                    tx:text="#{accion.eliminar}"> Eliminar </a> </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
             <div th:if="${articulos == null or articulos.empty }" >
-                La lista de articulos esta vacia
+                <p tx:text="#{articulo.no_mostrar}"> </p> La lista de articulos esta vacia
             </div>
         </div>
         <footer th:replace="layout/plantilla :: footer" />
