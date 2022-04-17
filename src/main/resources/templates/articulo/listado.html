@@ -2,51 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
      xmlns:sec="http://thymeleaft.org/extras/spring-security"
       >
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
+    <head th:replace="layout/plantilla :: head">
+        <title>Listado Categorias</title>
     </head>
+    
+    <body>
         <header th:replace="layout/plantilla :: header" />
         
-        <div class="contenido"> 
-            <h2 th:text="#{articulo.titulo}"> Listado de Articulos </h2>
-            <a th:href="@{/articulo/nuevo}" sec:authorize="hasRole('ROLE_ADMIN')" th:text="#{articulo.nuevo}" > Nuevo Articulo</a>
-            <div th:if="${articulos != null and !articulos.empty }" >
-                <table border="1">
-                    <thead>
-                        <tr>
-                            <th tx:text="#{articulo.descripcion}"> Descripcion</th>
-                            <th tx:text="#{articulo.precio}"> Precio </th>
-                            <th tx:text="#{articulo.existencias}"> Existencias </th>
-                            <th tx:text="#{articulo.activo}"> Activa </th>
-                            <th sec:authorize="hasRole('ROLE_ADMIN')" tx:text="#{accion.eliminar}"> ELI </th>
-                            <th sec:authorize="hasRole('ROLE_ADMIN')" tx:text="#{accion.actualizar}"> Acta </th>
-                        </tr>
-                    </thead>
-                    
-                    <tbody>
-                        <tr th:each="articulo : ${articulos}">
-                            <td th:text="${articulo.descripcion}"></td>
-                            <td th:text="${#numbers.formatDecimal(articulo.precio,3,2)}" style="text-align: right" ></td>
-                            <td th:text="${articulo.existencias}" style="text-align: center" ></td>
-                            
-                            <td> <input type="checkbox" name="activo" th:checked="${articulo.activo}" disabled="true">  </td>
-                            <td sec:authorize="hasRole('ROLE_ADMIN')"> <a th:href="@{/articulo/modificar/}+${articulo.idArticulo}"
-                                    tx:text="#{accion.actualizar}"> Modificar </a> </td>
-                                    
-                            <td sec:authorize="hasRole('ROLE_ADMIN')"> <a th:href="@{/articulo/eliminar/}+${articulo.idArticulo}"
-                                    tx:text="#{accion.eliminar}"> Eliminar </a> </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div th:if="${articulos == null or articulos.empty }" >
-                <p tx:text="#{articulo.no_mostrar}"> </p> La lista de articulos esta vacia
-            </div>
-        </div>
+        <section th:replace="articulo/fragmentosArticulo :: botonesAgregar"/>
+        <section th:replace="articulo/fragmentosArticulo :: agregarArticulo"/>
+        <section th:replace="articulo/fragmentosArticulo :: listadoArticulos"/> 
+        
         <footer th:replace="layout/plantilla :: footer" />
-    
+    </body>
 </html>
+

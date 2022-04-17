@@ -2,39 +2,52 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
      xmlns:sec="http://thymeleaft.org/extras/spring-security"
       >
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
-            .contenido {
-                text-align: center;
-                border-radius: 20px;
-                top:50%;
-                left:50%;
-                margin-left: -200px;
-                margin-top: -125px;
-                width: 400px;
-                height: 250px;
-                background-color: cadetblue;
-                position: fixed;
-                overflow: auto;
-            }        
-        </style>
+    <head th:replace="layout/plantilla :: head">
+        <title>Login</title>
     </head>
-        <div class="contenido">
-            <h2 th:text="#{login.login}" style="text-align: center"> Login </h2>
-            <form method="POST" th:action="@{/login}">
-                <label for="username" th:text="#{login.username}"> Username: </label><br/>
-                <input type="text" name="username" id="username" />
-                <br/><br/>
-                
-                <label for="password" th:text="#{login.password}"> Password: </label><br/>
-                <input type="password" name="password" id="password" />
-                <br/><br/>
-                
-                <button type="submit" value="Login" th:text="#{login.login}">Login </button>
-            </form>
-        </div>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+
+        <section id="actions" class="py-4 mb-4 bg-light">
+            <div class="container">
+                <div class="row">                   
+                </div>
+            </div>
+        </section>
+
+        <section id="login">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mx-auto">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>[[#{login.login}]]</h4>
+                            </div>
+                            <div class="card-body">
+                                <form method="POST" th:action="@{/login}">
+                                    <div class="row py-1 mb-2 bg-light">
+                                        <div class="form-group">
+                                            <label for="username">[[#{login.username}]]:</label>
+                                            <input type="text" name="username" id="username"/>
+                                        </div>
+                                    </div>
+                                    <div class="row py-1 mb-2 bg-light">
+                                        <div class="form-group">
+                                            <label for="password">[[#{login.password}]]:</label>
+                                            <input type="password" name="password" id="password"/>
+                                        </div>
+                                    </div>
+                                    <div class="row  py-1 mb-2 bg-light">
+                                        <button type="submit" class="btn btn-primary btn-block">[[#{login.login}]]</button>                                        
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer th:replace="layout/plantilla :: footer"></footer>
     </body>
 </html>

@@ -1,41 +1,19 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
-     xmlns:sec="http://www.thymeleaft.org/extras/spring-security"
-      >
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>     
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://wwww.thymeleaf.org" 
+      xmlns:sec="http://thymeleaft.org/extras/spring-security">
+    <head th:replace="layout/plantilla :: head">
+        <title>TechShop</title>
     </head>
+    
+    
     <body>
-        
         <header th:replace="layout/plantilla :: header" />
         
-        <div class="contenido">
-            <h2 tx:text="#{categoria.datos}">Datos de la categoria</h2>
-            <br/>
-            <a th:href="@{/categoria/listado}" tx:text="#{accion.regresar}"> Regresar </a>
-            <br />
-            <br />
-            <form th:action="@{/categoria/guardar}"
-                  method="post"
-                  th:object="${categoria}"
-            >
-                <input type="hidden" name="idCategoria" th:field="*{idCategoria}" />
-                
-                <label tx:text="#{categoria.descripcion}" for="descripcion"> Descripcion </label>
-                <input type="text" name="descripcion" th:field="*{descripcion}"/>
-                <br />
-
-                <label tx:text="#{categoria.activo}" for="activo"> Activo </label>
-                <input type="checkbox" name="activo" th:field="*{activo}"/>
-                <br />
-                
-                <input type="submit" name="guardar" value="Guardar" tx:text="#{accion.guardar}" />
-
-            </form>
-        </div>
+        <section th:replace="categoria/fragmentosCategoria :: editarCategoria"/> 
+        
         <footer th:replace="layout/plantilla :: footer" />
     </body>
+    
+    
 </html>

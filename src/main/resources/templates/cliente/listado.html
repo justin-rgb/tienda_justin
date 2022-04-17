@@ -2,51 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
      xmlns:sec="http://thymeleaft.org/extras/spring-security"
       >
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
+    <head th:replace="layout/plantilla :: head">
+        <title>Listado Clientes</title>
     </head>
-    <link href="../static/css/menu.css" rel="stylesheet" type="text/css"/>
-        <header th:replace="layout/plantilla :: header" />
-        
-        <div class="contenido"> 
-            <h2 tx:text="#{cliente.titulo}"> Listado de Clientes </h2>
-            <a th:href="@{/cliente/nuevo}" sec:authorize="hasRole('ROLE_ADMIN')" tx:text="#{cliente.nuevo}"> Nuevo Cliente</a>
-            <div th:if="${clientes != null and !clientes.empty }" >
-                <table border="1">
-                    <thead>
-                        <tr>
-                            <th tx:text="#{cliente.nombre}"> Nombre</th>
-                            <th tx:text="#{cliente.apellidos}"> Apellidos </th>
-                            <th tx:text="#{cliente.correo}"> Correo </th>
-                            <th tx:text="#{cliente.telefono}"> Telefono </th>
-                            <th tx:text="#{cliente.limite}"> Limite </th>
-                            <th sec:authorize="hasRole('ROLE_ADMIN')" tx:text="#{accion.actualizar}"> Modificar </th>
-                            <th sec:authorize="hasRole('ROLE_ADMIN')" tx:text="#{accion.eliminar}"> Eliminar </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="cliente : ${clientes}">
-                            <td th:text="${cliente.nombre}"></td>
-                            <td th:text="${cliente.apellidos}"></td>
-                            <td th:text="${cliente.correo}"></td>
-                            <td th:text="${cliente.telefono}"></td>
-                            <td th:text="${#numbers.formatDecimal(cliente.credito.limite,3,2)}" style="text-align: right">  </td>
-                            <td sec:authorize="hasRole('ROLE_ADMIN')"> <a th:href="@{/cliente/modificar/} + ${cliente.idCliente}"
-                                    tx:text="#{accion.actualizar}"> Modificar </a> </td>
-                            <td sec:authorize="hasRole('ROLE_ADMIN')"> <a th:href="@{/cliente/eliminar/} + ${cliente.idCliente}"
-                                    tx:text="#{accion.eliiminar}"> Eliminar </a> </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div th:if="${clientes == null or clientes.empty }" >
-                La lista de clientes esta vacia
-            </div>
-        </div>
-        <footer th:replace="layout/plantilla :: footer" />
     
+    <body>
+        <header th:replace="layout/plantilla :: header" />
+        <section th:replace="cliente/fragmentosCliente :: botonesAgregar"/>
+        <section th:replace="cliente/fragmentosCliente :: agregarCliente"/> 
+        <section th:replace="cliente/fragmentosCliente :: listadoClientes"/>
+
+        <footer th:replace="layout/plantilla :: footer" />
+    </body>
 </html>
